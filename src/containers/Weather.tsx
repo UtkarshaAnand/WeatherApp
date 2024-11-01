@@ -149,11 +149,13 @@ function Weather() {
     }
   }, [location]);
 
+  console.log(process.env.PUBLIC_URL);
+
   return (
     <div
       className="grid place-items-center min-h-screen w-full bg-cover brightness-200 lg:p-16 p-8"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/bg-rainy.jpg)`,
+        backgroundImage: `url(bg-rainy.jpg)`,
       }}
     >
       {forecast && (
