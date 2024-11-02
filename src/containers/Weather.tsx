@@ -160,7 +160,7 @@ function Weather() {
             getLatestLocation={getLatestLocation}
             location={location}
           />
-          <div className="grid grid-rows-3 lg:col-span-8 gap-4 rounded-2xl">
+          <div className="grid grid-flow-row lg:col-span-8 gap-4 rounded-2xl">
             <HourlyForecast hourlyWeather={forecast.hours} />
             <DailyForecast dailyWeather={forecast.days} />
             <AstroAndWind
