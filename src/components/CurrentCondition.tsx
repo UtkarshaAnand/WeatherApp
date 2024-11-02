@@ -61,7 +61,7 @@ function CurrentCondition(props: CurrentConditionProps) {
               <circle cx="12" cy="12" r="7" />
               <circle cx="12" cy="12" r="3" />
             </svg>
-            <div className="absolute left-1/2 bottom-7 min-w-max -translate-x-1/2 scale-0 transform text-sm transition-all duration-200 group-hover:scale-100">
+            <div className="absolute left-1/2 bottom-7 min-w-max -translate-x-1/2 scale-0 transform text-sm transition-all duration-200 md:group-hover:scale-100">
               <div className="flex max-w-xs flex-col items-center">
                 <div className="text-center font-normal text-sm bg-black/80 p-2 rounded text-white">
                   Use current location

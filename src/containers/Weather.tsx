@@ -63,7 +63,7 @@ function Weather() {
 
   const getCurrentLocation = useCallback(async () => {
     const lastLatitude = localStorage.getItem("lat");
-    const lastLongitude = localStorage.getItem("lat");
+    const lastLongitude = localStorage.getItem("lon");
     const lastLocationName = localStorage.getItem("name");
     const lastRegion = localStorage.getItem("region");
     if (lastLatitude && lastLongitude && lastLocationName && lastRegion) {
