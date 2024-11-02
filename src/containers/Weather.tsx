@@ -143,14 +143,24 @@ function Weather() {
     }
   }, [location]);
 
+  const getBackgroundImage = useCallback(() => {
+    if (forecast) {
+      if (forecast.current.isDay) return "bg-sunny";
+      return "bg-rainy";
+    }
+  }, [forecast]);
+
   return (
-    <div
-      className="grid place-items-center min-h-screen w-full bg-cover brightness-200 lg:p-16 p-8"
-      style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/bg-rainy.jpg)`,
-      }}
-    >
-      {location && forecast && (
+    location &&
+    forecast && (
+      <div
+        className="grid place-items-center min-h-screen w-full bg-cover brightness-200 lg:p-16 p-8"
+        style={{
+          backgroundImage: `url(${
+            process.env.PUBLIC_URL
+          }/${getBackgroundImage()}.jpg)`,
+        }}
+      >
         <div className="grid lg:grid-cols-12 h-full p-8 gap-4 rounded-3xl backdrop-blur-sm bg-black/20">
           <CurrentCondition
             weather={{
@@ -170,8 +180,8 @@ function Weather() {
             />
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    )
   );
 }
 
