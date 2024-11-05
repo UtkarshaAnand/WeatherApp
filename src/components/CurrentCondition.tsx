@@ -71,7 +71,7 @@ function CurrentCondition(props: CurrentConditionProps) {
           </button>
         </div>
       </div>
-      <div className="row-span-11 grid grid-flow-row p-4 rounded-2xl backdrop-blur-sm bg-black/20">
+      <div className="row-span-11 grid grid-flow-row pt-4 rounded-2xl backdrop-blur-sm bg-black/20">
         <div className="px-4 lg:flex items-center justify-center">
           <div className="text-center">
             <p className="md:text-7xl font-bold text-4xl md:mb-4 mb-2 text-stone-500">
@@ -82,9 +82,9 @@ function CurrentCondition(props: CurrentConditionProps) {
             </p>
           </div>
         </div>
-        <div className="grid grid-flow-row 2xl:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 grid-cols-1 gap-4 p-8">
-          <div className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg">
-            <p className="xl:p-4 p-2 flex items-center justify-start gap-1 text-stone-500 xl:text-lg md:text-md text-xs">
+        <div className="grid grid-flow-row grid-cols-2 gap-4 p-4">
+          <div className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg flex p-2 flex-col h-full">
+            <p className="flex items-center justify-start gap-1 text-stone-500 xl:text-lg md:text-md text-xs">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -101,12 +101,13 @@ function CurrentCondition(props: CurrentConditionProps) {
               </svg>
               Feels like
             </p>
-            <div className="px-8 xl:pb-8 pb-4 text-white 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg">
+            <hr className="h-px my-2 bg-stone-500 border-0 opacity-40"></hr>
+            <div className="flex flex-col h-full text-center justify-center text-white 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg">
               {weather.feelsLikeC}&deg;
             </div>
           </div>
-          <div className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg">
-            <p className="xl:p-4 p-2 flex items-center justify-start gap-1 text-stone-500 xl:text-lg md:text-md text-xs">
+          <div className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg flex p-2 flex-col h-full">
+            <p className="flex items-center justify-start gap-1 text-stone-500 xl:text-lg md:text-md text-xs">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -126,12 +127,13 @@ function CurrentCondition(props: CurrentConditionProps) {
               </svg>
               Precipitation
             </p>
-            <div className="px-8 xl:pb-8 pb-4 text-white 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg">
+            <hr className="h-px my-2 bg-stone-500 border-0 opacity-40"></hr>
+            <div className="flex flex-col h-full text-center justify-center text-white 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg">
               {weather.precipitation}%
             </div>
           </div>
-          <div className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg">
-            <p className="xl:p-4 p-2 flex items-center justify-start gap-1 text-stone-500 xl:text-lg md:text-md text-xs">
+          <div className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg flex p-2 flex-col h-full">
+            <p className="flex items-center justify-start gap-1 text-stone-500 xl:text-lg md:text-md text-xs">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -149,12 +151,13 @@ function CurrentCondition(props: CurrentConditionProps) {
               </svg>
               Humidity
             </p>
-            <div className="px-8 xl:pb-8 pb-4 text-white 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg">
+            <hr className="h-px my-2 bg-stone-500 border-0 opacity-40"></hr>
+            <div className="flex flex-col h-full text-center justify-center text-white 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg">
               {weather.humidity}%
             </div>
           </div>
-          <div className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg">
-            <p className="xl:p-4 p-2 flex items-center justify-start gap-1 text-stone-500 xl:text-lg md:text-md text-xs">
+          <div className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg flex p-2 flex-col h-full">
+            <p className="flex items-center justify-start gap-1 text-stone-500 xl:text-lg md:text-md text-xs">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -172,7 +175,8 @@ function CurrentCondition(props: CurrentConditionProps) {
               </svg>
               Visibility
             </p>
-            <div className="px-8 xl:pb-8 pb-4 text-white 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg">
+            <hr className="h-px my-2 bg-stone-500 border-0 opacity-40"></hr>
+            <div className="flex flex-col h-full text-center justify-center text-white 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg">
               {weather.visibility}km
             </div>
           </div>
