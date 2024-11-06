@@ -1,9 +1,7 @@
 import { DaysOfWeek } from "./constants";
 
-const getTimeString = (currentHour: number) => {
-  const hours = new Date(
-    new Date().getTime() + currentHour * 60 * 60 * 1000
-  ).getHours();
+const getTimeString = (selectedDay: number, currentHour: number) => {
+  const hours = (selectedDay === 0 ? new Date().getHours() : 0) + currentHour;
   if (hours >= 10) return `${hours}:00`;
   return `0${hours}:00`
 }

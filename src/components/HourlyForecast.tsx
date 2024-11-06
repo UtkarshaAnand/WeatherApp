@@ -4,10 +4,13 @@ import { ForecastDetails } from "../types";
 
 type HourlyForecastProps = {
   hourlyWeather: ForecastDetails[];
+  onHourSelect: (hourIndex: number) => void;
+  selectedDay: number;
+  selectedHour: number;
 };
 
 function HourlyForecast(props: HourlyForecastProps) {
-  const { hourlyWeather } = props;
+  const { hourlyWeather, onHourSelect, selectedDay, selectedHour } = props;
   return (
     <div className="flex flex-col p-4 rounded-xl backdrop-blur-sm bg-black/40 overflow-hidden">
       <p className="flex items-center justify-start gap-4 text-stone-500 xl:text-lg md:text-md text-xs">
@@ -31,9 +34,19 @@ function HourlyForecast(props: HourlyForecastProps) {
       <hr className="h-px my-2 bg-stone-500 border-0 opacity-40"></hr>
       <div className="grid auto-cols-[6rem] h-full gap-4 grid-flow-col overflow-x-auto whitespace-nowrap no-scrollbar">
         {hourlyWeather.map((hourForecast, hour) => (
-          <div className="flex flex-col justify-center items-center rounded-xl h-full p-2 text-white transition ease-in-out hover:bg-neutral-800">
+          <div
+            className={`flex flex-col justify-center items-center rounded-xl h-full p-2 text-white cursor-pointer ${
+              selectedHour !== hour
+                ? "transition ease-in-out hover:bg-neutral-800"
+                : "bg-neutral-800"
+            }`}
+            onClick={() => onHourSelect(hour)}
+            key={hour}
+          >
             <p className="mb-4 text-stone-500">
-              {hour === 0 ? "Now" : getTimeString(hour)}
+              {hour === 0 && selectedDay === 0
+                ? "Now"
+                : getTimeString(selectedDay, hour)}
             </p>
             <p className="text-2xl font-bold mb-2">
               {hourForecast.temperatureC}&deg;

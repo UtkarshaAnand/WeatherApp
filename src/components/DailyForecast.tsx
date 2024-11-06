@@ -4,10 +4,12 @@ import { ForecastDetails } from "../types";
 
 type DailyForecastProps = {
   dailyWeather: ForecastDetails[];
+  onDaySelect: (dayIndex: number) => void;
+  selectedDay: number;
 };
 
 function DailyForecast(props: DailyForecastProps) {
-  const { dailyWeather } = props;
+  const { dailyWeather, onDaySelect, selectedDay } = props;
   return (
     <div className="flex flex-col p-4 rounded-xl backdrop-blur-sm bg-black/40 h-full overflow-hidden">
       <p className="flex items-center justify-start gap-4 text-stone-500 xl:text-lg md:text-md text-xs">
@@ -35,7 +37,15 @@ function DailyForecast(props: DailyForecastProps) {
         {dailyWeather.map((dayForecast, day) => {
           const { dayOfWeek, date } = getDateOptions(day);
           return (
-            <div className="flex flex-col justify-center items-center rounded-xl h-full p-2 text-white transition ease-in-out hover:bg-neutral-800">
+            <div
+              className={`flex flex-col justify-center items-center rounded-xl h-full p-2 text-white cursor-pointer ${
+                selectedDay !== day
+                  ? "transition ease-in-out hover:bg-neutral-800"
+                  : "bg-neutral-800"
+              }`}
+              key={day}
+              onClick={() => onDaySelect(day)}
+            >
               <p className="text-stone-500 mb-1">
                 {day === 0 ? "Today" : dayOfWeek}
               </p>

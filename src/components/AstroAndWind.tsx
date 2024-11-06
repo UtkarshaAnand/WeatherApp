@@ -58,7 +58,9 @@ function AstroAndWind(props: AstroAndWindProps) {
             <path d="m8 6 4-4 4 4" />
             <path d="M16 18a4 4 0 0 0-8 0" />
           </svg>
-          <p className="font-semibold text-xl text-slate-300">{sunrise}</p>
+          <p className="font-semibold lg:text-xl text-md text-slate-300">
+            {sunrise}
+          </p>
         </div>
       </div>
       <div className="flex flex-col p-4 rounded-xl backdrop-blur-sm bg-black/40 h-full">
@@ -109,7 +111,9 @@ function AstroAndWind(props: AstroAndWindProps) {
             <path d="m16 6-4 4-4-4" />
             <path d="M16 18a4 4 0 0 0-8 0" />
           </svg>
-          <p className="font-semibold text-xl text-slate-300">{sunset}</p>
+          <p className="font-semibold lg:text-xl text-md text-slate-300">
+            {sunset}
+          </p>
         </div>
       </div>
       <div className="flex flex-col p-4 rounded-xl backdrop-blur-sm bg-black/40 h-full">
@@ -150,7 +154,7 @@ function AstroAndWind(props: AstroAndWindProps) {
             <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
             <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
           </svg>
-          <p className="font-semibold text-xl text-slate-300">
+          <p className="font-semibold lg:text-xl text-md text-slate-300">
             {windSpeed} km/hr
           </p>
         </div>
