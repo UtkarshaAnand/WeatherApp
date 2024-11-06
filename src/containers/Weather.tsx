@@ -22,7 +22,7 @@ type Forecast = (ForecastDetails & {
   minTemperatureF: number;
   sunrise: string;
   sunset: string;
-  hours: ForecastDetails[];
+  hours: (ForecastDetails & { timeEpoch: number })[];
 })[];
 
 function Weather() {
@@ -122,6 +122,7 @@ function Weather() {
                         text: h.condition.text,
                         icon: h.condition.icon,
                       },
+                      timeEpoch: h.time_epoch,
                     })),
                   };
                 }
@@ -141,13 +142,30 @@ function Weather() {
   }, [forecast, selectedDay, selectedHour]);
 
   const handleHourSelection = useCallback((hourIndex: number) => {
-    setSelectedHour(hourIndex);
+    const hoursRemaining = 24 - new Date().getHours();
+    if (hourIndex >= hoursRemaining) {
+      setSelectedDay(1);
+      setSelectedHour(hourIndex - hoursRemaining);
+    } else setSelectedHour(hourIndex);
   }, []);
 
   const handleDaySelection = useCallback((dayIndex: number) => {
     setSelectedDay(dayIndex);
     setSelectedHour(0);
   }, []);
+
+  const getHours = useCallback(
+    (forecast: Forecast) => {
+      if (selectedDay === 0) {
+        const hoursRemaining = 24 - forecast[selectedDay].hours.length;
+        return forecast[selectedDay].hours.concat(
+          forecast[1].hours.slice(0, hoursRemaining)
+        );
+      }
+      return forecast[selectedDay].hours;
+    },
+    [selectedDay]
+  );
 
   return (
     location &&
@@ -168,7 +186,7 @@ function Weather() {
           />
           <div className="grid grid-flow-row lg:col-span-8 gap-4 rounded-2xl">
             <HourlyForecast
-              hourlyWeather={forecast[selectedDay].hours}
+              hourlyWeather={getHours(forecast)}
               onHourSelect={handleHourSelection}
               selectedDay={selectedDay}
               selectedHour={selectedHour}
