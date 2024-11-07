@@ -40,7 +40,7 @@ function DailyForecast(props: DailyForecastProps) {
             <div
               className={`flex flex-col justify-center items-center rounded-xl h-full p-2 text-white cursor-pointer ${
                 selectedDay !== day
-                  ? "transition ease-in-out hover:bg-neutral-800"
+                  ? "transition ease-in-out lg:hover:bg-neutral-800"
                   : "bg-neutral-800"
               }`}
               key={day}
