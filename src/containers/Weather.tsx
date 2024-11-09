@@ -141,13 +141,16 @@ function Weather() {
     }
   }, [forecast, selectedDay, selectedHour]);
 
-  const handleHourSelection = useCallback((hourIndex: number) => {
-    const hoursRemaining = 24 - new Date().getHours();
-    if (hourIndex >= hoursRemaining) {
-      setSelectedDay(1);
-      setSelectedHour(hourIndex - hoursRemaining);
-    } else setSelectedHour(hourIndex);
-  }, []);
+  const handleHourSelection = useCallback(
+    (hourIndex: number) => {
+      const hoursRemaining = 24 - new Date().getHours();
+      if (hourIndex >= hoursRemaining && selectedDay === 0) {
+        setSelectedDay(1);
+        setSelectedHour(hourIndex - hoursRemaining);
+      } else setSelectedHour(hourIndex);
+    },
+    [selectedDay]
+  );
 
   const handleDaySelection = useCallback((dayIndex: number) => {
     setSelectedDay(dayIndex);
