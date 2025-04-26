@@ -1,15 +1,18 @@
-export type ForecastDetails = {
-  isDay?: boolean;
-  temperatureC: number;
-  temperatureF: number;
+export interface ForecastDetails {
+  temperatureC?: number;
   feelsLikeC?: number;
-  feelsLikeF?: number;
+  maxTemperatureC?: number;
+  minTemperatureC?: number;
   condition?: {
     text: string;
     icon: string;
+    code: number;
   };
+  time?: string;
+  date?: string;
+  isDay?: boolean;
   precipitation?: number;
   humidity?: number;
   visibility?: number;
   windSpeed?: number;
-};
+}

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { getLocation, getWeatherForecast } from "../api";
 import {
   CurrentCondition,
@@ -7,6 +8,7 @@ import {
   HourlyForecast,
 } from "../components/";
 import { ForecastDetails } from "../types";
+import { TemperatureUnit } from "../utils/helper";
 
 type Location = {
   lat: number;
@@ -18,8 +20,6 @@ type Location = {
 type Forecast = (ForecastDetails & {
   maxTemperatureC: number;
   minTemperatureC: number;
-  maxTemperatureF: number;
-  minTemperatureF: number;
   sunrise: string;
   sunset: string;
   hours: (ForecastDetails & { timeEpoch: number })[];
@@ -30,6 +30,7 @@ function Weather() {
   const [forecast, setForecast] = useState<Forecast | null>();
   const [selectedHour, setSelectedHour] = useState<number>(0);
   const [selectedDay, setSelectedDay] = useState<number>(0);
+  const [temperatureUnit, setTemperatureUnit] = useState<TemperatureUnit>("C");
 
   const handleLocationSuccess = async (position: GeolocationPosition) => {
     const latitude = position.coords.latitude;
@@ -99,8 +100,6 @@ function Weather() {
                     temperatureF: Math.round(day.avgtemp_f),
                     maxTemperatureC: Math.round(day.maxtemp_c),
                     minTemperatureC: Math.round(day.mintemp_c),
-                    maxTemperatureF: Math.round(day.maxtemp_f),
-                    minTemperatureF: Math.round(day.mintemp_f),
                     precipitation: day.daily_chance_of_rain,
                     condition: {
                       text: day.condition.text,
@@ -154,7 +153,6 @@ function Weather() {
 
   const handleDaySelection = useCallback((dayIndex: number) => {
     setSelectedDay(dayIndex);
-    setSelectedHour(0);
   }, []);
 
   const getHours = useCallback(
@@ -174,18 +172,24 @@ function Weather() {
     location &&
     forecast && (
       <div
-        className="grid place-items-center min-h-screen w-full bg-cover brightness-200 lg:p-16 p-8 overflow-hidden"
+        className="relative grid place-items-center min-h-screen w-full bg-cover brightness-200 lg:p-16 p-8 overflow-hidden"
         style={{
           backgroundImage: `url(${
             process.env.PUBLIC_URL
           }/${getBackgroundImage()}.jpg)`,
         }}
       >
-        <div className="grid lg:grid-cols-12 h-full w-full lg:p-8 p-4 gap-4 rounded-3xl backdrop-blur-sm bg-black/20">
+        <div className="relative grid lg:grid-cols-12 h-full w-full lg:p-8 p-4 gap-4 rounded-3xl backdrop-blur-sm bg-black/20">
           <CurrentCondition
-            weather={forecast[selectedDay].hours[selectedHour]}
+            weather={{
+              ...forecast[selectedDay].hours[selectedHour],
+              minTemperatureC: forecast[selectedDay].minTemperatureC,
+              maxTemperatureC: forecast[selectedDay].maxTemperatureC,
+            }}
             getLatestLocation={getLatestLocation}
             location={location}
+            temperatureUnit={temperatureUnit}
+            onTemperatureUnitChange={setTemperatureUnit}
           />
           <div className="grid grid-flow-row lg:col-span-8 gap-4 rounded-2xl">
             <HourlyForecast
@@ -193,11 +197,14 @@ function Weather() {
               onHourSelect={handleHourSelection}
               selectedDay={selectedDay}
               selectedHour={selectedHour}
+              temperatureUnit={temperatureUnit}
             />
             <DailyForecast
               dailyWeather={forecast}
               onDaySelect={handleDaySelection}
               selectedDay={selectedDay}
+              temperatureUnit={temperatureUnit}
+              onTemperatureUnitChange={setTemperatureUnit}
             />
             <AstroAndWind
               sunrise={forecast[selectedDay].sunrise}
