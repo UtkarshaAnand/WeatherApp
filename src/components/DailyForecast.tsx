@@ -96,7 +96,7 @@ function DailyForecast(props: DailyForecastProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onDaySelect(day)}
-                className={`flex flex-col rounded-xl h-full p-3 text-white cursor-pointer transition-colors duration-200 ${
+                className={`flex flex-col rounded-xl h-full p-3 text-white cursor-pointer transition-colors duration-200 items-center text-center lg:items-start lg:text-left ${
                   selectedDay !== day
                     ? "hover:bg-neutral-800/50"
                     : "bg-neutral-800"
@@ -119,7 +119,7 @@ function DailyForecast(props: DailyForecastProps) {
                   </motion.p>
                 </div>
 
-                <div className="flex lg:flex-row flex-col lg:items-center items-start lg:gap-2 gap-1 mb-2">
+                <div className="flex lg:flex-row flex-col lg:items-center items-center lg:gap-2 gap-1 mb-2">
                   <motion.img
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{
@@ -140,7 +140,7 @@ function DailyForecast(props: DailyForecastProps) {
                   <motion.p
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="lg:heading-small body-large font-bold"
+                    className="body-medium font-medium"
                   >
                     {getTemperature(dayForecast.maxTemperatureC)}
                   </motion.p>
@@ -149,12 +149,12 @@ function DailyForecast(props: DailyForecastProps) {
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="body-small text-stone-300 line-clamp-2 h-8 lg:text-center text-left"
+                  className="body-small text-stone-300 line-clamp-2 h-8 text-center lg:text-left"
                 >
                   {dayForecast.condition?.text}
                 </motion.p>
 
-                <div className="flex items-center justify-between mt-auto pt-2 text-stone-400">
+                <div className="flex items-center justify-between mt-auto pt-2 text-stone-400 w-full">
                   <div className="flex items-center gap-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

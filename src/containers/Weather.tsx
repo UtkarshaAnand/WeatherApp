@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { getLocation, getWeatherForecast } from "../api";
 import {
   CurrentCondition,
@@ -172,14 +171,14 @@ function Weather() {
     location &&
     forecast && (
       <div
-        className="relative grid place-items-center min-h-screen w-full bg-cover brightness-200 lg:p-16 p-8 overflow-hidden"
+        className="relative grid place-items-center min-h-screen w-full bg-cover brightness-200 overflow-hidden"
         style={{
           backgroundImage: `url(${
             process.env.PUBLIC_URL
           }/${getBackgroundImage()}.jpg)`,
         }}
       >
-        <div className="relative grid lg:grid-cols-12 h-full w-full lg:p-8 p-4 gap-4 rounded-3xl backdrop-blur-sm bg-black/20">
+        <div className="relative grid lg:grid-cols-12 h-full w-full lg:p-8 p-4 gap-4 backdrop-blur-sm bg-black/20">
           <CurrentCondition
             weather={{
               ...forecast[selectedDay].hours[selectedHour],

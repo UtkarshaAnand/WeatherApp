@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ForecastDetails } from "../types";
 import { TemperatureUnit, convertTemperature } from "../utils/helper";
 
@@ -40,7 +40,7 @@ function CurrentCondition(props: CurrentConditionProps) {
     >
       <div className="row-span-1 flex items-center justify-between gap-2">
         <motion.div
-          className="flex-1 flex items-center justify-between bg-neutral-800 opacity-75 rounded-full p-2"
+          className="flex-1 flex items-center justify-between bg-neutral-800 opacity-75 rounded-3xl p-2"
           whileHover={{ scale: 1.02 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
@@ -128,7 +128,7 @@ function CurrentCondition(props: CurrentConditionProps) {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="display-medium text-stone-500"
+              className="lg:display-medium heading-large text-stone-500"
             >
               {weather.temperatureC && getTemperature(weather.temperatureC)}
               &deg;{temperatureUnit}
@@ -136,7 +136,7 @@ function CurrentCondition(props: CurrentConditionProps) {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="body-large text-stone-400 flex items-center justify-center gap-4 mb-2"
+              className="lg:body-large body-medium text-stone-400 flex items-center justify-center gap-4 mb-2"
             >
               <motion.span
                 key={`max-${weather.maxTemperatureC}-${temperatureUnit}`}
@@ -190,7 +190,7 @@ function CurrentCondition(props: CurrentConditionProps) {
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="heading-small text-stone-500"
+              className="lg:heading-small body-large text-stone-500"
             >
               {weather.condition?.text}
             </motion.p>
@@ -290,7 +290,7 @@ function CurrentCondition(props: CurrentConditionProps) {
               key={item.label}
               className="rounded-xl backdrop-blur-sm bg-black/40 shadow-lg flex p-2 flex-col h-full"
             >
-              <div className="flex items-center justify-start gap-1 text-stone-500 label-large">
+              <div className="flex items-center justify-start gap-1 text-stone-500 lg:label-large label-small">
                 {item.icon}
                 {item.label}
               </div>
@@ -304,7 +304,7 @@ function CurrentCondition(props: CurrentConditionProps) {
                   stiffness: 200,
                   damping: 15,
                 }}
-                className="flex flex-col h-full text-center justify-center text-white heading-small"
+                className="flex flex-col h-full text-center justify-center text-white lg:heading-small body-medium"
               >
                 {item.value}
               </motion.div>
